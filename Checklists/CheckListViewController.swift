@@ -57,6 +57,14 @@ extension CheckListViewController{
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            checkListItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     func configureCell(cell: UITableViewCell, withItem item: CheckListItem){
         configureCheckmarkFor(cell: cell, withItem: item);
         configureTextFor(cell: cell, withItem: item)
@@ -73,7 +81,8 @@ extension CheckListViewController{
     func configureTextFor(cell: UITableViewCell, withItem item: CheckListItem){
         cell.textLabel?.text = item.text
     }
-
+    
+    
 }
 
 
