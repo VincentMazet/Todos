@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CheckListViewController.swift
 //  Checklists
 //
 //  Created by iem on 02/02/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CheckListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
