@@ -14,6 +14,7 @@
 		B825446D1E431D8D006E88A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B825446B1E431D8D006E88A2 /* LaunchScreen.storyboard */; };
 		B82544781E431D8D006E88A2 /* ChecklistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82544771E431D8D006E88A2 /* ChecklistsTests.swift */; };
 		B82544831E431D8D006E88A2 /* ChecklistsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82544821E431D8D006E88A2 /* ChecklistsUITests.swift */; };
+		B82544911E432774006E88A2 /* CheckListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82544901E432774006E88A2 /* CheckListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B825447E1E431D8D006E88A2 /* ChecklistsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChecklistsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B82544821E431D8D006E88A2 /* ChecklistsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsUITests.swift; sourceTree = "<group>"; };
 		B82544841E431D8D006E88A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82544901E432774006E88A2 /* CheckListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B82544691E431D8D006E88A2 /* Assets.xcassets */,
 				B825446B1E431D8D006E88A2 /* LaunchScreen.storyboard */,
 				B825446E1E431D8D006E88A2 /* Info.plist */,
+				B82544901E432774006E88A2 /* CheckListItem.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82544911E432774006E88A2 /* CheckListItem.swift in Sources */,
 				B82544651E431D8D006E88A2 /* CheckListViewController.swift in Sources */,
 				B82544631E431D8D006E88A2 /* AppDelegate.swift in Sources */,
 			);
