@@ -21,4 +21,12 @@ class CheckListItem{
     init(aText: String){
         text = aText
     }
+    
+    func toggleChecked(){
+        if checked{
+            checked = false
+        }else{
+            checked = true
+        }
+    }
 }
