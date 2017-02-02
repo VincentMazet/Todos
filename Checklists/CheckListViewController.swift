@@ -31,6 +31,12 @@ class CheckListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func addDummyTodo(_ sender: AnyObject) {
+        let dummy : CheckListItem = CheckListItem(aText: "dummy item")
+        checkListItems.append(dummy)
+        self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)
+], with: UITableViewRowAnimation.automatic)
+    }
 }
 
 extension CheckListViewController{

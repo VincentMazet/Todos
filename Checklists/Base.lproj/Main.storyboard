@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Check List View Controller-->
+        <!--CheckList-->
         <scene sceneID="9kP-hm-vrh">
             <objects>
                 <tableViewController id="zGG-h4-NIx" customClass="CheckListViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,13 @@
                             <outlet property="delegate" destination="zGG-h4-NIx" id="nls-KB-fhh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="BWu-cd-okx"/>
+                    <navigationItem key="navigationItem" title="CheckList" id="BWu-cd-okx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zaf-yU-Tie">
+                            <connections>
+                                <action selector="addDummyTodo:" destination="zGG-h4-NIx" id="L76-S4-mMC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWX-h5-fJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
