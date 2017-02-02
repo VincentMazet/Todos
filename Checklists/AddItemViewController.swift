@@ -12,6 +12,7 @@ class AddItemViewController: UITableViewController {
 
     
     @IBOutlet weak var txtField: UITextField!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func cancel(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
@@ -22,5 +23,12 @@ class AddItemViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         txtField.becomeFirstResponder()
+    }
+    @IBAction func txtFieldHasChanged(_ sender: AnyObject) {
+        if(txtField.text?.isEmpty)!{
+            doneButton.isEnabled = false;
+        }else{
+            doneButton.isEnabled = true;
+        }
     }
 }
