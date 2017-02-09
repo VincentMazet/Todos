@@ -14,17 +14,6 @@ class CheckListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let mock1 : CheckListItem = CheckListItem(aText: "mock item 1")
-        let mock2 : CheckListItem = CheckListItem(aText: "mock item 2", isChecked: true)
-        let mock3 : CheckListItem = CheckListItem(aText: "mock item 3", isChecked: true)
-        let mock4 : CheckListItem = CheckListItem(aText: "mock item 4", isChecked: false)
-
-        checkListItems.append(mock1)
-        checkListItems.append(mock2)
-        checkListItems.append(mock3)
-        checkListItems.append(mock4)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +35,10 @@ class CheckListViewController: UITableViewController {
             targetController.itemToEdit = checkListItems[(indexPath?.row)!]
         }
     }
+    
+    override func awakeFromNib(){
+        loadChecklistItems();
+    }
 }
 
 extension CheckListViewController {
@@ -64,6 +57,7 @@ extension CheckListViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         checkListItems[indexPath.row].toggleChecked()
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -91,7 +85,7 @@ extension CheckListViewController {
     
 }
 
-extension CheckListViewController: ItemDetailViewControllerDelegate{
+extension CheckListViewController: ItemDetailViewControllerDelegate {
     
     func itemDetailViewControllerDidCancel(controller: ItemDetailViewController){
         controller.dismiss(animated: true, completion: nil)
@@ -101,11 +95,35 @@ extension CheckListViewController: ItemDetailViewControllerDelegate{
         checkListItems.append(item)
         self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        saveChecklistItems()
     }
     
     func editItemViewController(controller: ItemDetailViewController, didFinishEdditingItem item: CheckListItem){
         let index = checkListItems.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        saveChecklistItems()
+    }
+}
+
+extension CheckListViewController {
+    
+    func documentDirectory() -> URL{
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func dataFileUrl() -> URL{
+        let docsDir : URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return docsDir.appendingPathComponent("Ckecklists.plist")
+    }
+    
+    func saveChecklistItems(){
+        NSKeyedArchiver.archiveRootObject(checkListItems, toFile: dataFileUrl().path)
+    }
+    
+    func loadChecklistItems(){
+        if(NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) != nil){
+            checkListItems = NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) as! [CheckListItem]
+        }
     }
 }
