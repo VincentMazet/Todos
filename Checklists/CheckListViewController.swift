@@ -29,18 +29,10 @@ class CheckListViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    /* Useless now
-    @IBAction func addDummyTodo(_ sender: AnyObject) {
-        let dummy : CheckListItem = CheckListItem(aText: "dummy item")
-        checkListItems.append(dummy)
-        self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)
-], with: UITableViewRowAnimation.automatic)
-    }*/
 }
 
-extension CheckListViewController{
+extension CheckListViewController {
  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checkListItems.count
@@ -83,7 +75,26 @@ extension CheckListViewController{
         cell.textLabel?.text = item.text
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! AddItemViewController
+            targetController.delegate = self
+        }
+    }
     
 }
 
-
+extension CheckListViewController: AddItemViewControllerDelegate{
+    
+    func addItemViewControllerDidCancel(controller: AddItemViewController){
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: CheckListItem){
+        checkListItems.append(item)
+        self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)
+            ], with: UITableViewRowAnimation.automatic)
+        controller.dismiss(animated: true, completion: nil)
+    }
+}

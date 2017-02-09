@@ -9,17 +9,18 @@
 import UIKit
 
 class AddItemViewController: UITableViewController {
-
+    
+    var delegate : AddItemViewControllerDelegate?
     
     @IBOutlet weak var txtField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBAction func cancel(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewControllerDidCancel(controller: self)
     }
     @IBAction func done(_ sender: AnyObject) {
-        print(txtField.text)
-        dismiss(animated: true, completion: nil)
+        let checkListItem : CheckListItem =  CheckListItem(aText: txtField.text!)
+        delegate?.addItemViewController(controller: self, didFinishAddingItem: checkListItem)
     }
     override func viewWillAppear(_ animated: Bool) {
         txtField.becomeFirstResponder()
@@ -31,4 +32,12 @@ class AddItemViewController: UITableViewController {
             doneButton.isEnabled = true;
         }
     }
+}
+
+protocol AddItemViewControllerDelegate : class {
+    
+    func addItemViewControllerDidCancel(controller: AddItemViewController)
+    
+    func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: CheckListItem)
+    
 }
