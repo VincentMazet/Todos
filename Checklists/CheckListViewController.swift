@@ -11,9 +11,11 @@ import UIKit
 class CheckListViewController: UITableViewController {
     
     var checkListItems : [CheckListItem] = []
+    var list: CheckList!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = list.name
     }
 
     override func didReceiveMemoryWarning() {

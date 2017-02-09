@@ -24,7 +24,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="zGG-h4-NIx" kind="show" id="66R-KQ-Ni7"/>
+                                    <segue destination="zGG-h4-NIx" kind="show" identifier="showItems" id="66R-KQ-Ni7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -203,6 +203,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hBr-p0-xe3"/>
+        <segue reference="Fbi-fK-HAI"/>
     </inferredMetricsTieBreakers>
 </document>
