@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZOT-0O-cCp" id="bBs-eo-Soc">
-                                    <frame key="frameInset" width="308" height="43.5"/>
+                                    <frame key="frameInset" width="308" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="✔️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLK-Vw-7fx">
@@ -37,13 +37,11 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="20E-T4-LFs" firstAttribute="top" secondItem="bBs-eo-Soc" secondAttribute="topMargin" constant="2" id="EcR-r1-o73"/>
-                                        <constraint firstItem="KLK-Vw-7fx" firstAttribute="top" secondItem="bBs-eo-Soc" secondAttribute="top" constant="2" id="OJv-zu-wnW"/>
-                                        <constraint firstAttribute="trailing" secondItem="20E-T4-LFs" secondAttribute="trailing" id="R6U-D4-Ti4"/>
-                                        <constraint firstItem="KLK-Vw-7fx" firstAttribute="leading" secondItem="bBs-eo-Soc" secondAttribute="leading" id="ebQ-UI-DQ5"/>
-                                        <constraint firstAttribute="bottom" secondItem="KLK-Vw-7fx" secondAttribute="bottom" constant="2" id="gr6-8U-Kjv"/>
-                                        <constraint firstItem="20E-T4-LFs" firstAttribute="leading" secondItem="KLK-Vw-7fx" secondAttribute="trailing" constant="8" id="m84-Ht-D0E"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="20E-T4-LFs" secondAttribute="bottom" constant="2" id="pOj-J1-GVw"/>
+                                        <constraint firstItem="20E-T4-LFs" firstAttribute="leading" secondItem="KLK-Vw-7fx" secondAttribute="trailing" constant="8" id="Shj-k5-DJY"/>
+                                        <constraint firstItem="20E-T4-LFs" firstAttribute="top" secondItem="bBs-eo-Soc" secondAttribute="topMargin" constant="3" id="beP-Um-YVK"/>
+                                        <constraint firstItem="KLK-Vw-7fx" firstAttribute="top" secondItem="bBs-eo-Soc" secondAttribute="top" constant="3" id="c9m-CO-dte"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="20E-T4-LFs" secondAttribute="bottom" constant="3" id="i9B-45-dHM"/>
+                                        <constraint firstAttribute="bottom" secondItem="KLK-Vw-7fx" secondAttribute="bottom" constant="3" id="kPS-QX-mCQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

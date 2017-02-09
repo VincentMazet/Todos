@@ -30,6 +30,22 @@ class CheckListViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! AddItemViewController
+            targetController.delegate = self
+        }
+        if segue.identifier == "EditItem" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! AddItemViewController
+            targetController.delegate = self
+            let cell = sender as! UITableViewCell
+            let indexPath = self.tableView.indexPath(for: cell)
+            targetController.itemToEdit = checkListItems[(indexPath?.row)!]
+        }
+    }
 }
 
 extension CheckListViewController {
@@ -77,14 +93,6 @@ extension CheckListViewController {
         titleLabel?.text = item.text
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddItem" {
-            let destinationNav = segue.destination as? UINavigationController
-            let targetController = destinationNav?.topViewController as! AddItemViewController
-            targetController.delegate = self
-        }
-    }
-    
 }
 
 extension CheckListViewController: AddItemViewControllerDelegate{
@@ -95,8 +103,13 @@ extension CheckListViewController: AddItemViewControllerDelegate{
     
     func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: CheckListItem){
         checkListItems.append(item)
-        self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)
-            ], with: UITableViewRowAnimation.automatic)
+        self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func editItemViewController(controller: AddItemViewController, didFinishEdditingItem item: CheckListItem){
+        let index = checkListItems.index(where:{ $0 === item })
+        self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
     }
 }
