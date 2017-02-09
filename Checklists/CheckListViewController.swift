@@ -64,15 +64,17 @@ extension CheckListViewController {
     }
     
     func configureCheckmarkFor(cell: UITableViewCell, withItem item: CheckListItem){
+        let checkLabel = self.view.viewWithTag(1) as? UILabel
         if item.checked {
-            cell.accessoryType = .checkmark
+            checkLabel?.text = "✔️"
         } else {
-            cell.accessoryType = .none
+            checkLabel?.text = "     "
         }
     }
     
     func configureTextFor(cell: UITableViewCell, withItem item: CheckListItem){
-        cell.textLabel?.text = item.text
+        let titleLabel = self.view.viewWithTag(2) as? UILabel
+        titleLabel?.text = item.text
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
