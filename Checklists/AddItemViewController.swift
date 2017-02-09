@@ -1,5 +1,5 @@
 //
-//  AddItemViewController.swift
+//  ItemDetailViewController.swift
 //  Checklists
 //
 //  Created by iem on 02/02/2017.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController {
+class ItemDetailViewController: UITableViewController {
     
-    var delegate : AddItemViewControllerDelegate?
+    var delegate : ItemDetailViewControllerDelegate?
     
     var itemToEdit : CheckListItem?
     
@@ -25,18 +25,19 @@ class AddItemViewController: UITableViewController {
             self.title = "Add Item"
         }else{
             //edit item
+            doneButton.isEnabled = true
             self.title = "Edit Item"
             txtField.text = itemToEdit?.text
         }
     }
     
     @IBAction func cancel(_ sender: AnyObject) {
-        delegate?.addItemViewControllerDidCancel(controller: self)
+        delegate?.itemDetailViewControllerDidCancel(controller: self)
     }
     @IBAction func done(_ sender: AnyObject) {
         if(itemToEdit == nil){
             let checkListItem : CheckListItem =  CheckListItem(aText: txtField.text!)
-            delegate?.addItemViewController(controller: self, didFinishAddingItem: checkListItem)
+            delegate?.itemDetailViewController(controller: self, didFinishAddingItem: checkListItem)
         } else {
             itemToEdit?.text = txtField.text!
             delegate?.editItemViewController(controller: self, didFinishEdditingItem: itemToEdit!)
@@ -47,19 +48,19 @@ class AddItemViewController: UITableViewController {
     }
     @IBAction func txtFieldHasChanged(_ sender: AnyObject) {
         if(txtField.text?.isEmpty)!{
-            doneButton.isEnabled = false;
+            doneButton.isEnabled = false
         }else{
-            doneButton.isEnabled = true;
+            doneButton.isEnabled = true
         }
     }
 }
 
-protocol AddItemViewControllerDelegate : class {
+protocol ItemDetailViewControllerDelegate : class {
     
-    func addItemViewControllerDidCancel(controller: AddItemViewController)
+    func itemDetailViewControllerDidCancel(controller: ItemDetailViewController)
     
-    func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: CheckListItem)
+    func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: CheckListItem)
     
-    func editItemViewController(controller: AddItemViewController, didFinishEdditingItem item: CheckListItem)
+    func editItemViewController(controller: ItemDetailViewController, didFinishEdditingItem item: CheckListItem)
     
 }
