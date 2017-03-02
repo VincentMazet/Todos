@@ -10,7 +10,7 @@ import UIKit
 
 class AllListViewController: UITableViewController {
     
-    var lists : [CheckList] = []
+    var dataModel : DataModel = DataModel.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +20,12 @@ class AllListViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func awakeFromNib(){
-        loadChecklists()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showItems" {
             let targetController = segue.destination as? CheckListViewController
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPath(for: cell)
-            targetController?.list = lists[(indexPath?.row)!]
+            targetController?.list = dataModel.lists[(indexPath?.row)!]
         }
         if segue.identifier == "AddList" {
             let destinationNav = segue.destination as? UINavigationController
@@ -42,7 +38,7 @@ class AllListViewController: UITableViewController {
             targetController.delegate = self
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPath(for: cell)
-            targetController.itemToEdit = lists[(indexPath?.row)!]
+            targetController.itemToEdit = dataModel.lists[(indexPath?.row)!]
         }
     }
 }
@@ -50,19 +46,18 @@ class AllListViewController: UITableViewController {
 extension AllListViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        return  dataModel.lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Checklist", for: indexPath)
-        cell.textLabel?.text = lists[indexPath.item].name
+        cell.textLabel?.text = dataModel.lists[indexPath.item].name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        saveChecklists()
     }
 }
 
@@ -73,38 +68,16 @@ extension AllListViewController: ListDetailViewControllerDelegate
     }
     
     func listDetailViewController(controller: ListDetailViewController, didFinishAddingItem item: CheckList){
-        lists.append(item)
-        self.tableView.insertRows(at: [IndexPath(row: lists.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        dataModel.lists.append(item)
+        self.tableView.insertRows(at: [IndexPath(row: dataModel.lists.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        saveChecklists()
+
     }
     
     func editListViewController(controller: ListDetailViewController, didFinishEdditingItem item: CheckList){
-        let index = lists.index(where:{ $0 === item })
+        let index = dataModel.lists.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        saveChecklists()
-    }
-}
 
-extension AllListViewController {
-    
-    func documentDirectory() -> URL{
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
-    
-    func dataFileUrl() -> URL{
-        let docsDir : URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return docsDir.appendingPathComponent("Ckecklists.plist")
-    }
-    
-    func saveChecklists(){
-        NSKeyedArchiver.archiveRootObject(lists, toFile: dataFileUrl().path)
-    }
-    
-    func loadChecklists(){
-        if(NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) != nil){
-            lists = NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) as! [CheckList]
-        }
     }
 }
