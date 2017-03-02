@@ -97,6 +97,7 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         checkListItems.append(item)
         self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        list.items = checkListItems
         //saveChecklistItems()
     }
     
@@ -104,6 +105,7 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         let index = checkListItems.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        list.items = checkListItems
         //saveChecklistItems()
     }
 }
