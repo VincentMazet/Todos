@@ -51,8 +51,15 @@ extension AllListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Checklist", for: indexPath)
-        cell.textLabel?.text = dataModel.lists[indexPath.item].name
-        cell.detailTextLabel?.text = String(dataModel.lists[indexPath.item].uncheckedItemCounts)
+        let checkList = dataModel.lists[indexPath.item]
+        cell.textLabel?.text = checkList.name
+        cell.detailTextLabel?.text = String(checkList.uncheckedItemCounts)
+        if checkList.uncheckedItemCounts == 0 {
+            cell.detailTextLabel?.text = "All Done !"
+            if checkList.items.count == 0{
+                cell.detailTextLabel?.text = "(No Item)"
+            }
+        }
         return cell
     }
     
