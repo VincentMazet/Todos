@@ -31,8 +31,20 @@ class AllListViewController: UITableViewController {
             let indexPath = self.tableView.indexPath(for: cell)
             targetController?.list = lists[(indexPath?.row)!]
         }
+        if segue.identifier == "AddList" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! ListDetailViewController
+            targetController.delegate = self
+        }
+        if segue.identifier == "EditList" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! ListDetailViewController
+            targetController.delegate = self
+            let cell = sender as! UITableViewCell
+            let indexPath = self.tableView.indexPath(for: cell)
+            targetController.itemToEdit = lists[(indexPath?.row)!]
+        }
     }
-
 }
 
 extension AllListViewController {
@@ -50,5 +62,24 @@ extension AllListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+    }
+}
+
+extension AllListViewController: ListDetailViewControllerDelegate
+{
+    func listDetailViewControllerDidCancel(controller: ListDetailViewController){
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func listDetailViewController(controller: ListDetailViewController, didFinishAddingItem item: CheckList){
+        lists.append(item)
+        self.tableView.insertRows(at: [IndexPath(row: lists.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func editListViewController(controller: ListDetailViewController, didFinishEdditingItem item: CheckList){
+        let index = lists.index(where:{ $0 === item })
+        self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
+        controller.dismiss(animated: true, completion: nil)
     }
 }

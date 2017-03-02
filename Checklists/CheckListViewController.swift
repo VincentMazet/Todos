@@ -39,7 +39,7 @@ class CheckListViewController: UITableViewController {
     }
     
     override func awakeFromNib(){
-        loadChecklistItems();
+        //loadChecklistItems()
     }
 }
 
@@ -59,7 +59,7 @@ extension CheckListViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         checkListItems[indexPath.row].toggleChecked()
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -71,7 +71,7 @@ extension CheckListViewController {
     }
     
     func configureCell(cell: UITableViewCell, withItem item: CheckListItem){
-        configureCheckmarkFor(cell: cell, withItem: item);
+        configureCheckmarkFor(cell: cell, withItem: item)
         configureTextFor(cell: cell, withItem: item)
     }
     
@@ -97,14 +97,14 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         checkListItems.append(item)
         self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
     
     func editItemViewController(controller: ItemDetailViewController, didFinishEdditingItem item: CheckListItem){
         let index = checkListItems.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        saveChecklistItems()
+        //saveChecklistItems()
     }
 }
 
