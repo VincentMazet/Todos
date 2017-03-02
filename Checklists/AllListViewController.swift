@@ -50,6 +50,7 @@ extension AllListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        dataModel.sortChecklists()
         let cell = tableView.dequeueReusableCell(withIdentifier: "Checklist", for: indexPath)
         let checkList = dataModel.lists[indexPath.item]
         cell.textLabel?.text = checkList.name
@@ -77,12 +78,14 @@ extension AllListViewController: ListDetailViewControllerDelegate
     
     func listDetailViewController(controller: ListDetailViewController, didFinishAddingItem item: CheckList){
         dataModel.lists.append(item)
+        dataModel.sortChecklists()
         self.tableView.insertRows(at: [IndexPath(row: dataModel.lists.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
 
     }
     
     func editListViewController(controller: ListDetailViewController, didFinishEdditingItem item: CheckList){
+        dataModel.sortChecklists()
         let index = dataModel.lists.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)

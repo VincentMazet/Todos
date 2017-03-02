@@ -24,6 +24,11 @@ class DataModel{
         
     }
     
+    func sortChecklists() {
+        lists = lists.sorted(by: { checklist1, checklist2 in return
+            checklist1.name.localizedStandardCompare(checklist2.name) == ComparisonResult.orderedAscending })
+    }
+    
     func documentDirectory() -> URL{
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
