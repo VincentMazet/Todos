@@ -52,6 +52,7 @@ extension AllListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Checklist", for: indexPath)
         cell.textLabel?.text = dataModel.lists[indexPath.item].name
+        cell.detailTextLabel?.text = String(dataModel.lists[indexPath.item].uncheckedItemCounts)
         return cell
     }
     

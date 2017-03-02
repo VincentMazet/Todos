@@ -13,6 +13,14 @@ class CheckList : NSObject,  NSCoding {
     var name: String
     var items: [CheckListItem] = []
     
+    var uncheckedItemCounts : Int {
+        get {
+            return items.filter {(checkListItem : CheckListItem) -> Bool in
+                            return !checkListItem.checked
+                        }.count
+        }
+    }
+    
     init(aName: String){
         name = aName
     }

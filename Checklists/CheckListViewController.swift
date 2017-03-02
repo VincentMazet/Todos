@@ -91,13 +91,11 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         list.items.append(item)
         self.tableView.insertRows(at: [IndexPath(row: list.items.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        list.items = list.items
     }
     
     func editItemViewController(controller: ItemDetailViewController, didFinishEdditingItem item: CheckListItem){
         let index = list.items.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
-        list.items = list.items
     }
 }
