@@ -13,15 +13,15 @@ class AllListViewController: UITableViewController {
     var lists : [CheckList] = []
     
     override func viewDidLoad() {
-        lists.append(CheckList(aName: "list 1"))
-        lists.append(CheckList(aName: "list 2"))
-        lists.append(CheckList(aName: "list 3"))
-
         super.viewDidLoad()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func awakeFromNib(){
+        loadChecklists()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,6 +62,7 @@ extension AllListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        saveChecklists()
     }
 }
 
@@ -75,11 +76,35 @@ extension AllListViewController: ListDetailViewControllerDelegate
         lists.append(item)
         self.tableView.insertRows(at: [IndexPath(row: lists.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        saveChecklists()
     }
     
     func editListViewController(controller: ListDetailViewController, didFinishEdditingItem item: CheckList){
         let index = lists.index(where:{ $0 === item })
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
+        saveChecklists()
+    }
+}
+
+extension AllListViewController {
+    
+    func documentDirectory() -> URL{
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func dataFileUrl() -> URL{
+        let docsDir : URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return docsDir.appendingPathComponent("Ckecklists.plist")
+    }
+    
+    func saveChecklists(){
+        NSKeyedArchiver.archiveRootObject(lists, toFile: dataFileUrl().path)
+    }
+    
+    func loadChecklists(){
+        if(NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) != nil){
+            lists = NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) as! [CheckList]
+        }
     }
 }

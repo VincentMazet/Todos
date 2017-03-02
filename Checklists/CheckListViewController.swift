@@ -37,10 +37,6 @@ class CheckListViewController: UITableViewController {
             targetController.itemToEdit = checkListItems[(indexPath?.row)!]
         }
     }
-    
-    override func awakeFromNib(){
-        //loadChecklistItems()
-    }
 }
 
 extension CheckListViewController {
@@ -59,7 +55,6 @@ extension CheckListViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         checkListItems[indexPath.row].toggleChecked()
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        //saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -98,7 +93,6 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         self.tableView.insertRows(at: [IndexPath(row: checkListItems.count - 1, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
         list.items = checkListItems
-        //saveChecklistItems()
     }
     
     func editItemViewController(controller: ItemDetailViewController, didFinishEdditingItem item: CheckListItem){
@@ -106,28 +100,5 @@ extension CheckListViewController: ItemDetailViewControllerDelegate {
         self.tableView.reloadRows(at: [IndexPath(row: index!, section: 0)], with: UITableViewRowAnimation.automatic)
         controller.dismiss(animated: true, completion: nil)
         list.items = checkListItems
-        //saveChecklistItems()
-    }
-}
-
-extension CheckListViewController {
-    
-    func documentDirectory() -> URL{
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
-    
-    func dataFileUrl() -> URL{
-        let docsDir : URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return docsDir.appendingPathComponent("Ckecklists.plist")
-    }
-    
-    func saveChecklistItems(){
-        NSKeyedArchiver.archiveRootObject(checkListItems, toFile: dataFileUrl().path)
-    }
-    
-    func loadChecklistItems(){
-        if(NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) != nil){
-            checkListItems = NSKeyedUnarchiver.unarchiveObject(withFile: dataFileUrl().path) as! [CheckListItem]
-        }
     }
 }
