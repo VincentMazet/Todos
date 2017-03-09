@@ -12,6 +12,7 @@ class CheckList : NSObject,  NSCoding {
     
     var name: String
     var items: [CheckListItem] = []
+    var icon: String = "Appointments"
     
     var uncheckedItemCounts : Int {
         get {
@@ -33,12 +34,14 @@ class CheckList : NSObject,  NSCoding {
     // MARK: NSCoding
     required init?(coder decoder: NSCoder) {
         name = (decoder.decodeObject(forKey: "name") as? String)!
+        icon = (decoder.decodeObject(forKey: "icon") as? String)!
         items = (decoder.decodeObject(forKey: "items") as! [CheckListItem])
         
     }
     
     public func encode(with aCoder: NSCoder){
         aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.icon, forKey: "icon")
         aCoder.encode(self.items, forKey: "items")
     }
 }
