@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListDetailViewController: UITableViewController {
+class ListDetailViewController: UITableViewController{
     
     var delegate : ListDetailViewControllerDelegate?
     
@@ -25,6 +25,8 @@ class ListDetailViewController: UITableViewController {
         if(itemToEdit == nil){
             //add item
             self.title = "Add List"
+            textIcon.text = "Folder"
+            imageIcon.image = UIImage(named: "Folder")
         }else{
             //edit item
             doneButton.isEnabled = true
@@ -48,9 +50,11 @@ class ListDetailViewController: UITableViewController {
     @IBAction func done(_ sender: AnyObject) {
         if(itemToEdit == nil){
             let checkList : CheckList =  CheckList(aName: txtField.text!)
+            checkList.icon = textIcon.text!
             delegate?.listDetailViewController(controller: self, didFinishAddingItem: checkList)
         } else {
             itemToEdit?.name = txtField.text!
+            itemToEdit?.icon = textIcon.text!
             delegate?.editListViewController(controller: self, didFinishEdditingItem: itemToEdit!)
         }
     }
@@ -62,6 +66,33 @@ class ListDetailViewController: UITableViewController {
             doneButton.isEnabled = true
         }
     }
+    
+    @IBAction func finished(_ sender: AnyObject) {
+        self.view.endEditing(true)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectIcon" {
+            let destinationNav = segue.destination as? UINavigationController
+            let targetController = destinationNav?.topViewController as! IconPickerViewController
+            targetController.delegate = self
+        }
+    }
+}
+
+extension ListDetailViewController: IconPickerViewControllerDelegate{
+    
+    func IconPickerViewControllerDidCancel(controller : IconPickerViewController){
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    
+    func IconPickerViewControllerDidSelect(controller: IconPickerViewController, imageName: String){
+        self.textIcon.text = imageName
+        self.imageIcon.image = UIImage(named: imageName)
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 protocol ListDetailViewControllerDelegate : class {

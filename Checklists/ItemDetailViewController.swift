@@ -53,6 +53,9 @@ class ItemDetailViewController: UITableViewController {
             doneButton.isEnabled = true
         }
     }
+    @IBAction func finished(_ sender: AnyObject) {
+        self.view.endEditing(true)
+    }
 }
 
 protocol ItemDetailViewControllerDelegate : class {
