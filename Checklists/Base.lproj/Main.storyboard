@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hJZ-Yu-gh8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hJZ-Yu-gh8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -23,10 +23,6 @@
                                     <frame key="frameInset" width="308" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AHt-fU-Vfn">
-                                            <frame key="frameInset" minX="34" minY="-43" width="240" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lZc-Iy-vUP">
                                             <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -64,7 +60,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omk-EM-u0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="103"/>
+            <point key="canvasLocation" x="76" y="102.99850074962519"/>
         </scene>
         <!--Name of the list-->
         <scene sceneID="9kP-hm-vrh">
@@ -123,7 +119,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWX-h5-fJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="103"/>
+            <point key="canvasLocation" x="820" y="102.99850074962519"/>
         </scene>
         <!--Add List-->
         <scene sceneID="P82-e5-HMl">
@@ -140,7 +136,7 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Yj-eq-OVV" id="ec2-7Y-a77">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the list" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-Kd-bwC">
@@ -166,6 +162,41 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="4Bx-Gr-aDH">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="DiK-Dw-Hiy">
+                                        <rect key="frame" x="0.0" y="179" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DiK-Dw-Hiy" id="ra3-4P-0G9">
+                                            <frame key="frameInset" width="342" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Icon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-9A-fE3">
+                                                    <frame key="frameInset" minX="8" minY="11" width="200" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5r-0U-2Rq">
+                                                    <frame key="frameInset" minX="300" minY="4" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="iwy-mf-SBT"/>
+                                                        <constraint firstAttribute="width" constant="36" id="kUd-F0-gIT"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="s7M-9A-fE3" secondAttribute="bottom" constant="3" id="5wR-Wd-wsQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="p5r-0U-2Rq" secondAttribute="trailing" id="FJz-AT-MQD"/>
+                                                <constraint firstItem="s7M-9A-fE3" firstAttribute="centerX" secondItem="ra3-4P-0G9" secondAttribute="centerX" id="GyO-Ay-evh"/>
+                                                <constraint firstItem="s7M-9A-fE3" firstAttribute="top" secondItem="ra3-4P-0G9" secondAttribute="topMargin" constant="3" id="VkQ-i3-hYW"/>
+                                                <constraint firstItem="s7M-9A-fE3" firstAttribute="leading" secondItem="ra3-4P-0G9" secondAttribute="leadingMargin" constant="3" id="l2Q-Mo-Gfe"/>
+                                                <constraint firstItem="p5r-0U-2Rq" firstAttribute="centerY" secondItem="ra3-4P-0G9" secondAttribute="centerY" id="vG6-DI-HP5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="rcN-WS-P13" id="tbu-gV-K9I"/>
@@ -186,6 +217,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="ulH-aR-cGv" id="TL4-3d-nr1"/>
+                        <outlet property="imageIcon" destination="p5r-0U-2Rq" id="Pzo-Ts-gva"/>
+                        <outlet property="textIcon" destination="s7M-9A-fE3" id="UZe-iS-vQq"/>
                         <outlet property="txtField" destination="5n4-Kd-bwC" id="ZX1-Qy-032"/>
                     </connections>
                 </tableViewController>

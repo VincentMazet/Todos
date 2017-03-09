@@ -17,6 +17,8 @@ class ListDetailViewController: UITableViewController {
     
     @IBOutlet weak var txtField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var imageIcon: UIImageView!
+    @IBOutlet weak var textIcon: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class ListDetailViewController: UITableViewController {
             doneButton.isEnabled = true
             self.title = "Edit List"
             txtField.text = itemToEdit?.name
+            textIcon.text = itemToEdit?.icon
+            imageIcon.image = UIImage(named: (itemToEdit?.icon)!)
         }
     }
     

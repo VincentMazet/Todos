@@ -53,6 +53,7 @@ extension AllListViewController {
         dataModel.sortChecklists()
         let cell = tableView.dequeueReusableCell(withIdentifier: "Checklist", for: indexPath)
         let checkList = dataModel.lists[indexPath.item]
+        cell.imageView?.image = UIImage(named: checkList.icon)
         cell.textLabel?.text = checkList.name
         cell.detailTextLabel?.text = String(checkList.uncheckedItemCounts)
         if checkList.uncheckedItemCounts == 0 {
