@@ -7,16 +7,54 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            center.requestAuthorization(options: [UNAuthorizationOptions.sound ], completionHandler: { (granted, error) in
+                if error == nil{
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            })
+        } else {
+            let settings  = UIUserNotificationSettings(types: [UIUserNotificationType.alert , UIUserNotificationType.badge , UIUserNotificationType.sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+        
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Test notification"
+        content.body = "Unicorn are real just like the cake"
+        content.categoryIdentifier = "alarm"
+        content.userInfo = ["customData": "customData"]
+        content.sound = UNNotificationSound.default()
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = 12
+        dateComponents.minute = 23
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+        
         return true
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                        willPresent notification: UNNotification,
+                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void){
+        print("Notification center request ok")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -18,6 +18,7 @@
 		B88963AF1E4CACD500E0ADDC /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88963AE1E4CACD500E0ADDC /* AllListViewController.swift */; };
 		B88963B11E4CB59F00E0ADDC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88963B01E4CB59F00E0ADDC /* CheckList.swift */; };
 		B88AC5B61E71493400B58295 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88AC5B51E71493400B58295 /* IconPickerViewController.swift */; };
+		B88AC5B91E716D6400B58295 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88AC5B81E716D6400B58295 /* UserNotifications.framework */; };
 		B8FB2E891E68039C00866DDC /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB2E881E68039C00866DDC /* ListDetailViewController.swift */; };
 		B8FB2E8B1E681BAE00866DDC /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB2E8A1E681BAE00866DDC /* DataModel.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		B88963AE1E4CACD500E0ADDC /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		B88963B01E4CB59F00E0ADDC /* CheckList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		B88AC5B51E71493400B58295 /* IconPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
+		B88AC5B81E716D6400B58295 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B8FB2E881E68039C00866DDC /* ListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		B8FB2E8A1E681BAE00866DDC /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88AC5B91E716D6400B58295 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +96,7 @@
 				B82544761E431D8D006E88A2 /* ChecklistsTests */,
 				B82544811E431D8D006E88A2 /* ChecklistsUITests */,
 				B82544601E431D8D006E88A2 /* Products */,
+				B88AC5B71E716D6400B58295 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +145,14 @@
 				B82544841E431D8D006E88A2 /* Info.plist */,
 			);
 			path = ChecklistsUITests;
+			sourceTree = "<group>";
+		};
+		B88AC5B71E716D6400B58295 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B88AC5B81E716D6400B58295 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
