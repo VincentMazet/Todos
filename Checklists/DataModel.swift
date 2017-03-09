@@ -16,6 +16,8 @@ class DataModel{
     private init() {
         loadChecklists()
         
+        UserDefaults.standard.set(true, forKey: "FirstLaunch")
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(DataModel.saveChecklists),
