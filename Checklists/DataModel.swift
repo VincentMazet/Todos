@@ -18,6 +18,11 @@ class DataModel{
         
         UserDefaults.standard.set(true, forKey: "FirstLaunch")
         
+        if(UserDefaults.standard.bool(forKey: "FirstLaunch")){
+            UserDefaults.standard.set(false, forKey: "FirstLaunch")
+            lists.append(CheckList(aName: "List", someItems: [CheckListItem(aText : "Edit your first item"), CheckListItem(aText : "Swipe me to delete")]))
+        }
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(DataModel.saveChecklists),
